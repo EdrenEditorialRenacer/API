@@ -11,6 +11,23 @@ import { Archiveros } from '../entity/Archiveros';
 export class ArchiverosController {
 
 
+  static getAll = async (req: Request, res: Response) => {
+    const archiverosRepository = getRepository(Archiveros);
+    let archiveros;
+
+    try {
+      archiveros = await archiverosRepository.find({ select: ['id','Titulo','idAutor','Precio','Modulos','Roles']});
+    } catch (e) {
+      res.status(404).json({ message: 'Somenthing goes wrong!' });
+    }
+
+    if (archiveros.length > 0) {
+      res.send(archiveros);
+    } else {
+      res.status(404).json({ message: 'Not result' });
+    }
+  };
+
     static getLibrosFree = async (req: Request, res: Response) => {
         const archiverosRepository = getRepository(Archiveros);
         let archiveros;

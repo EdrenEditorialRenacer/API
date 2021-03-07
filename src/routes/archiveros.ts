@@ -45,6 +45,9 @@ router.get('/peliculas/premium',[checkJwt, checkRole(['user_premium'])], Archive
 // Get all videos
 router.get('/videos/premium',[checkJwt, checkRole(['user_premium'])], ArchiverosController.getVideosPremium);
 
+// Get all
+router.get('/', [checkJwt, checkRole(['admin'])], ArchiverosController.getAll);
+
 
 // Get one book
 router.get('/:id', [checkJwt, checkRole(['admin'])], ArchiverosController.getById);
