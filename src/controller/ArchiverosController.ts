@@ -16,7 +16,7 @@ export class ArchiverosController {
     let archiveros;
 
     try {
-      archiveros = await archiverosRepository.find({ select: ['id','Titulo','idAutor','Precio','Modulos','Roles']});
+      archiveros = await archiverosRepository.find({ select: ['id','Titulo','idAutor','Genero','Precio','Modulos','Roles']});
     } catch (e) {
       res.status(404).json({ message: 'Somenthing goes wrong!' });
     }
